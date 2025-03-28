@@ -1,1 +1,62 @@
+class Stack:
+    def __init__(self):
+        self.stack = []
+    
+    def push(self, ring):
+        """Add a ring to the stack."""
+        self.stack.append(ring)
+    
+    def pop(self):
+        """Remove the top ring from the stack."""
+        if not self.is_empty():
+            return self.stack.pop()
+        else:
+            return "Stack is empty"
+    
+    def remove_ring(self, ring_color):
+        """Remove a specific ring by color."""
+        if ring_color in self.stack:
+            self.stack.remove(ring_color)
+            return f"{ring_color} ring removed."
+        else:
+            return f"{ring_color} ring not found in the stack."
+    
+    def add_ring(self, ring_color):
+        """Add a ring of specific color to the stack."""
+        self.push(ring_color)
+        return f"{ring_color} ring added to the stack."
+    
+    def peek(self):
+        """View the top ring without removing it."""
+        if not self.is_empty():
+            return self.stack[-1]
+        else:
+            return "Stack is empty"
+    
+    def is_empty(self):
+        """Check if the stack is empty."""
+        return len(self.stack) == 0
+    
+    def display(self):
+        """Display the current stack."""
+        return self.stack
+    
+stack = Stack()
+
+rings = ["Red", "Orange", "Yellow", "Green", "Blue"]
+
+for ring in rings:
+    stack.push(ring)
+
+print("Initial Stack:", stack.display())
+
+print("\n" + stack.add_ring("Purple"))
+print("Stack after adding Purple:", stack.display())
+
+print("\n" + stack.remove_ring("Green"))
+print("Stack after removing Green:", stack.display())
+
+print("\n" + stack.remove_ring("Pink"))
+
+print("\nFinal Stack:", stack.display())
 
