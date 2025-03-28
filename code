@@ -1,66 +1,70 @@
-#0from colorama import Fore, Style, init
-#init(autoreset=True)
-#print(Fore.RED + "Hello, world!" + Style.RESET_ALL)
-
-stack = []
-
-
-# Push
-
-red = """
+RED = "\033[91m"
+YELLOW = "\033[93m" # DEFINE ALL THE COLORS
+PURPLE= "\033[95m"
+GREEN = "\033[92m"
+BLUE = "\033[94m"
+RESET = "\033[0m"
+stack = [] # make the stack
+color_code = ["\033[91m" , "\033[93m" , "\033[95m" , "\033[92m" , "\033[94m" , "\033[0m"]
+                                             # make the ascii art of the rings
+red = f"""{RED}
             __________________
-           [__________________]
-"""
-orange = """
+           [__________________]     
+{RESET}"""
+purple = f"""{PURPLE}
          ________________________
         [________________________]
-"""
-yellow = """
+{RESET}"""
+yellow = f"""{YELLOW}
       ______________________________
      [______________________________]
-"""
-green = """
+{RESET}"""
+green = f"""{GREEN}
     ____________________________________
    [____________________________________]
-"""
-blue = """ 
+{RESET}"""
+blue = F"""{BLUE} 
   _____________________________________________
  [_____________________________________________]
-"""
-def display(stack):
+{RESET}"""
+def display(stack):                  # define the display to stack the rings
     if not stack:
         print("Stack is empty")
     else:
-        print("Stack elements:")
+        print("Stack rings:")
     for item in reversed(stack):
         print(item)
-    
-def push(self, value):
-        new_node = stack(value)
-        if self.head:
-            new_node.next = self.head
-        self.head = new_node
-        self.size += 1
 
-print("welcome to the stacking toy")
+print("welcome to the stacking toy")             
 while True:
-    print("would like to add (A) or remove a ring (R)")
+    print("would like to add (A) or remove a ring (R)")         # inputs for the adding or removing
     input1 = input().upper()
     if input1 == "R":
       stack.pop()
     elif input1 == "A":
-        print("which color would you like to Add (R)(O)(Y)(G)(B)")
+        print("which color would you like to Add (R)(P)(Y)(G)(B)")    # input for chosing color
         input2 = input().upper()
         if input2 == 'R':
           stack.append(red)
-        elif input2 == 'O':
-            stack.append(orange)
+        elif input2 == 'P':
+            stack.append(purple)
         elif input2 == 'Y':
             stack.append(yellow)
         elif input2 == 'G':
             stack.append(green)
         elif input2 == 'B':
             stack.append(blue)
+    else:
+        print("invalid input try again")
     display(stack)
+    print("would you like to continue Y/N")         # input for continuing or stoping
+    input3 = input().upper()
+    if input3 == 'Y':
+        continue
+    elif input3 == 'N':
+        break
+    else:
+        print("invalid input")
+        continue
 
     
