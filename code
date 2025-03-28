@@ -1,62 +1,66 @@
-class Stack:
-    def __init__(self):
-        self.stack = []
-    
-    def push(self, ring):
-        """Add a ring to the stack."""
-        self.stack.append(ring)
-    
-    def pop(self):
-        """Remove the top ring from the stack."""
-        if not self.is_empty():
-            return self.stack.pop()
-        else:
-            return "Stack is empty"
-    
-    def remove_ring(self, ring_color):
-        """Remove a specific ring by color."""
-        if ring_color in self.stack:
-            self.stack.remove(ring_color)
-            return f"{ring_color} ring removed."
-        else:
-            return f"{ring_color} ring not found in the stack."
-    
-    def add_ring(self, ring_color):
-        """Add a ring of specific color to the stack."""
-        self.push(ring_color)
-        return f"{ring_color} ring added to the stack."
-    
-    def peek(self):
-        """View the top ring without removing it."""
-        if not self.is_empty():
-            return self.stack[-1]
-        else:
-            return "Stack is empty"
-    
-    def is_empty(self):
-        """Check if the stack is empty."""
-        return len(self.stack) == 0
-    
-    def display(self):
-        """Display the current stack."""
-        return self.stack
-    
-stack = Stack()
+#0from colorama import Fore, Style, init
+#init(autoreset=True)
+#print(Fore.RED + "Hello, world!" + Style.RESET_ALL)
 
-rings = ["Red", "Orange", "Yellow", "Green", "Blue"]
+stack = []
 
-for ring in rings:
-    stack.push(ring)
 
-print("Initial Stack:", stack.display())
+# Push
 
-print("\n" + stack.add_ring("Purple"))
-print("Stack after adding Purple:", stack.display())
+red = """
+            __________________
+           [__________________]
+"""
+orange = """
+         ________________________
+        [________________________]
+"""
+yellow = """
+      ______________________________
+     [______________________________]
+"""
+green = """
+    ____________________________________
+   [____________________________________]
+"""
+blue = """ 
+  _____________________________________________
+ [_____________________________________________]
+"""
+def display(stack):
+    if not stack:
+        print("Stack is empty")
+    else:
+        print("Stack elements:")
+    for item in reversed(stack):
+        print(item)
+    
+def push(self, value):
+        new_node = stack(value)
+        if self.head:
+            new_node.next = self.head
+        self.head = new_node
+        self.size += 1
 
-print("\n" + stack.remove_ring("Green"))
-print("Stack after removing Green:", stack.display())
+print("welcome to the stacking toy")
+while True:
+    print("would like to add (A) or remove a ring (R)")
+    input1 = input().upper()
+    if input1 == "R":
+      stack.pop()
+    elif input1 == "A":
+        print("which color would you like to Add (R)(O)(Y)(G)(B)")
+        input2 = input().upper()
+        if input2 == 'R':
+          stack.append(red)
+        elif input2 == 'O':
+            stack.append(orange)
+        elif input2 == 'Y':
+            stack.append(yellow)
+        elif input2 == 'G':
+            stack.append(green)
+        elif input2 == 'B':
+            stack.append(blue)
+    display(stack)
 
-print("\n" + stack.remove_ring("Pink"))
-
-print("\nFinal Stack:", stack.display())
-
+    
