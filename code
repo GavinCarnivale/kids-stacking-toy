@@ -1,70 +1,85 @@
+# color codes
 RED = "\033[91m"
-YELLOW = "\033[93m" # DEFINE ALL THE COLORS
-PURPLE= "\033[95m"
+YELLOW = "\033[93m"
+PURPLE = "\033[95m"
 GREEN = "\033[92m"
 BLUE = "\033[94m"
 RESET = "\033[0m"
-stack = [] # make the stack
-color_code = ["\033[91m" , "\033[93m" , "\033[95m" , "\033[92m" , "\033[94m" , "\033[0m"]
-                                             # make the ascii art of the rings
-red = f"""{RED}
+
+# ascii Art
+rings = {
+    'R': f"""{RED}
             __________________
            [__________________]     
-{RESET}"""
-purple = f"""{PURPLE}
+{RESET}""",
+    'P': f"""{PURPLE}
          ________________________
         [________________________]
-{RESET}"""
-yellow = f"""{YELLOW}
+{RESET}""",
+    'Y': f"""{YELLOW}
       ______________________________
      [______________________________]
-{RESET}"""
-green = f"""{GREEN}
+{RESET}""",
+    'G': f"""{GREEN}
     ____________________________________
    [____________________________________]
-{RESET}"""
-blue = F"""{BLUE} 
+{RESET}""",
+    'B': f"""{BLUE} 
   _____________________________________________
  [_____________________________________________]
 {RESET}"""
-def display(stack):                  # define the display to stack the rings
+}
+
+stack = []  # Stack to hold rings
+added_colors = set()  # Track added ring colors
+def display(stack):
+    """Display the current stack."""
     if not stack:
-        print("Stack is empty")
+        print("Stack is empty.")
     else:
         print("Stack rings:")
-    for item in reversed(stack):
-        print(item)
+        for item in reversed(stack):
+            print(item)
 
-print("welcome to the stacking toy")             
+print("Welcome to the stacking toy!")
+
 while True:
-    print("would like to add (A) or remove a ring (R)")         # inputs for the adding or removing
-    input1 = input().upper()
-    if input1 == "R":
-      stack.pop()
-    elif input1 == "A":
-        print("which color would you like to Add (R)(P)(Y)(G)(B)")    # input for chosing color
-        input2 = input().upper()
-        if input2 == 'R':
-          stack.append(red)
-        elif input2 == 'P':
-            stack.append(purple)
-        elif input2 == 'Y':
-            stack.append(yellow)
-        elif input2 == 'G':
-            stack.append(green)
-        elif input2 == 'B':
-            stack.append(blue)
-    else:
-        print("invalid input try again")
-    display(stack)
-    print("would you like to continue Y/N")         # input for continuing or stoping
-    input3 = input().upper()
-    if input3 == 'Y':
-        continue
-    elif input3 == 'N':
-        break
-    else:
-        print("invalid input")
-        continue
+    action = input("Would you like to Add (A) or Remove (R) a ring? ").strip().upper()
 
+    if action == "R":
+        if stack:
+            removed_ring = stack.pop()
+            # this input will Remove the corresponding color from the set
+            for key, value in rings.items():
+                if value == removed_ring:
+                    added_colors.remove(key)
+                    break
+            print("Removed the top ring.")
+        else:
+            print("The stack is already empty, nothing to remove!")
+
+    elif action == "A":
+        color = input("Choose a color to add - Red (R), Purple (P), Yellow (Y), Green (G), Blue (B): ").strip().upper()
+        
+        if color in rings: # this input for if you wanted add a ring
+            if color in added_colors:  # this checks if the ring is already in the stack
+                print("This ring is already in the stack! Choose a different color.")
+            else:
+                stack.append(rings[color])
+                added_colors.add(color)
+                print(f"Added {color} ring.")
+        else:
+            print("Invalid color choice. Try again.")
+
+    else:
+        print("Invalid input. Please enter 'A' to add or 'R' to remove.")
+
+    display(stack)
+
+    cont = input("Would you like to continue? (Y/N): ").strip().upper()
+    if cont == 'N':
+        break          # if you would like to continue promt
+    elif cont != 'Y':
+        print("Invalid input, continuing")
+v 
     
