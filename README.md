@@ -1,1 +1,1 @@
-this code shpuld work fully to every degree, i used a couple new things i leanred along the way like "set" in this code
+This code fully simulates a childs stacking toy. It has multiple different colored rings each being different sizes. Once you place a ring down you cannot place it down twice, and you can only remove the ring on the top, just like the real toy.
